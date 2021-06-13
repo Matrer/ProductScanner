@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1015319566291",
+    "firebase_url": "https://productscanner-356f9-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "productscanner-356f9",
+    "storage_bucket": "productscanner-356f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015319566291:android:5cf4a989095c6d16158126",
+        "android_client_info": {
+          "package_name": "com.ismip.mkksms.productscanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015319566291-6qbdboegscoj47v9rboenfqd8a0lepu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHI6VvdJ5dsJg8xl4SGSMcD1w0oFNoxOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015319566291-6qbdboegscoj47v9rboenfqd8a0lepu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

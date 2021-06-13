@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@android:color/background_light"
+              android:id="@+id/constraint"
+              android:orientation="vertical"
+              android:elevation="4dp"
+              android:layout_margin="4dp">
+    <TextView
+            android:text="Nazwa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewName"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray" android:textStyle="bold"
+            android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+            android:textAlignment="center"/>
+    <TextView
+            android:text="Cena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewPrice" android:textSize="16sp"
+            android:textStyle="bold|italic" android:textColor="@android:color/background_dark"
+            android:textAlignment="center"
+            android:layout_marginStart="8dp" android:layout_marginEnd="8dp" android:layout_marginBottom="16dp"
+    />
+</LinearLayout>
