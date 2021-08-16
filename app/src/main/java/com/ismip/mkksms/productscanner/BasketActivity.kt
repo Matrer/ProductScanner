@@ -19,22 +19,34 @@ class BasketActivity : Activity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val uidd = auth.currentUser!!.uid
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basket)
-        recyclerView.layoutManager = GridLayoutManager(applicationContext,2)
-        database.child(auth.currentUser!!.uid).get().addOnSuccessListener {
+        recyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
+
+        buttonDelete.setOnClickListener {
+            database.child(uidd).removeValue()
+            updateAdapter(uidd)
+        }
+        updateAdapter(uidd)
+    }
+
+    private fun updateAdapter(userUIDD:String) {
+
+        database.child(userUIDD).get().addOnSuccessListener {
             val barcodes = mutableListOf<Barcode>()
             for (ds in it.children) {
                 val name = ds.child("name").getValue(String::class.java)
                 val price = ds.child("price").getValue(String::class.java)
-                barcodes.add(Barcode(name, price))
+                barcodes.add(Barcode(name, price, ds.key))
             }
-            recyclerView.adapter = BarcodeAdapter(barcodes.toTypedArray())
+            recyclerView.adapter = BarcodeAdapter(barcodes, userUIDD, database)
+            val sumOf = barcodes.sumOf { n -> (n.price?:"0").toDouble() }
+            textViewSum.text = "$sumOf zł"
 
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             finish()
         }
-
     }
 
 }

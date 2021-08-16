@@ -24,9 +24,9 @@ class BarcodeActivity : Activity() {
         setContentView(R.layout.activity_bardercode)
         buttonAccept.setOnClickListener {
             if (qrCode.length == 13) {
-                val intent = Intent(applicationContext, MainActivity::class.java)
+                val intent = Intent(this, SendBarcodeActivity::class.java)
                 intent.putExtra("barcode", qrCode)
-                applicationContext.startActivity(intent)
+                startActivity(intent)
             } else {
                 Toast.makeText(applicationContext, "Niepoprawny kod kreskowy", Toast.LENGTH_SHORT)
                     .show()
@@ -36,17 +36,15 @@ class BarcodeActivity : Activity() {
             BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.EAN_13).build()
         val cameraSource = CameraSource.Builder(this, barcodeDetector)
             .setAutoFocusEnabled(true)
-            .setRequestedPreviewSize(640, 480)
             .build()
+
         cameraView.holder.addCallback(object : SurfaceHolder.Callback {
             override fun surfaceCreated(holder: SurfaceHolder) {
-                if (ActivityCompat.checkSelfPermission(
-                        applicationContext,
-                        Manifest.permission.CAMERA
-                    )
-                    != PackageManager.PERMISSION_GRANTED
-                ) {
-                    return
+                if (ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+                    ActivityCompat.requestPermissions(this@BarcodeActivity, arrayOf(Manifest.permission.CAMERA), 100);
+                }
+                if (ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+                    finish()
                 }
                 try {
                     cameraSource.start(holder)
